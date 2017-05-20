@@ -1,10 +1,10 @@
 <html>
-	<head>
+<head>
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	</head>
-	<body>
-		<div class="container">
-			<table class="table table-striped" id="table">
+</head>
+<body>
+	<div class="container">
+		<table class="table table-striped" id="table">
 			<tr>
 				<th>First Name</th>
 				<th>Last Name</th>
@@ -33,15 +33,18 @@
 		</table>
 
 		<hr>
+		
+		<br>
+		<div class="col-md-6">
+
 		<select  id="position" class="form-control">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
 			<option value="4">4</option>
 		</select>
-
-		<div>
-			<table>
+		<br>
+			<table class="table table-striped">
 				<tr>
 					<td>First Name</td><td><input type="text" class="form-control" id="fname"></td>
 				</tr>
@@ -56,25 +59,46 @@
 				</tr>
 			</table>
 		</div>
-		</div>
-		<script>
-			function add(){
-				var position=document.getElementById("position").value
-				var table=document.getElementById("table")
-				var person={
-					fname:document.getElementById("fname").value,
-					lname:document.getElementById("lname").value,
-					email:document.getElementById("email").value
+	</div>
+	<script>
+		function add(){
+			var position=document.getElementById("position").value
+			var table=document.getElementById("table")
+			var person={
+				fname:document.getElementById("fname").value,
+				lname:document.getElementById("lname").value,
+				email:document.getElementById("email").value
+			}
+			var row=table.insertRow(position);
+			var cell1=row.insertCell(0);
+			var cell2=row.insertCell(1);
+			var cell3=row.insertCell(2);
+			cell1.innerHTML=person.fname;
+			cell2.innerHTML=person.lname;
+			cell3.innerHTML=person.email;
+
+		}
+
+		var rows=document.getElementById("table").rows;
+
+		for (i=0;i<rows.length;i++){
+			rows[i].onclick=function (event){
+				var RowIndex=event.target.parentElement.rowIndex;
+				if(RowIndex>0){
+					table.deleteRow(event.target.parentElement.rowIndex)
+					var row=table.insertRow(RowIndex);
+
+					var rowCells=event.target.parentElement.cells;
+					for (j=0;j<rowCells.length;j++){
+						var cell=row.insertCell(j)
+						cell.innerHTML="<input type='text' value="+rowCells[j].innerHTML+" class='form-control'>"
+
+					}
 				}
-				var row=table.insertRow(position);
-				var cell1=row.insertCell(0);
-				var cell2=row.insertCell(1);
-				var cell3=row.insertCell(2);
-				cell1.innerHTML=person.fname;
-				cell2.innerHTML=person.lname;
-				cell3.innerHTML=person.email;
+
 
 			}
-		</script>
-	</body>
+		}
+	</script>
+</body>
 </html>
