@@ -1,0 +1,80 @@
+<html>
+	<head>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container">
+			<table class="table table-striped" id="table">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+			</tr>
+			<tr>
+				<td>Murali</td>
+				<td>Krishna</td>
+				<td>mk@gmail.com</td>
+			</tr>
+			<tr>
+				<td>Leela</td>
+				<td>Vathis</td>
+				<td>lkm@gmail.com</td>
+			</tr>
+			<tr>
+				<td>Hema</td>
+				<td>Sekar</td>
+				<td>hema@gmail.com</td>
+			</tr>
+			<tr>
+				<td>ram</td>
+				<td>Kumar</td>
+				<td>ram@gmail.com</td>
+			</tr>
+		</table>
+
+		<hr>
+		<select  id="position" class="form-control">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select>
+
+		<div>
+			<table>
+				<tr>
+					<td>First Name</td><td><input type="text" class="form-control" id="fname"></td>
+				</tr>
+				<tr>
+					<td>last Name</td><td><input type="text" class="form-control" id="lname"></td>
+				</tr>
+				<tr>
+					<td>Email</td><td><input type="text" class="form-control" id="email"></td>
+				</tr>
+				<tr>
+					<td></td><td><input type="button" class="btn btn-info" value="Add" onclick="add()"></td>
+				</tr>
+			</table>
+		</div>
+		</div>
+		<script>
+			function add(){
+				var position=document.getElementById("position").value
+				var table=document.getElementById("table")
+				var person={
+					fname:document.getElementById("fname").value,
+					lname:document.getElementById("lname").value,
+					email:document.getElementById("email").value
+				}
+				var row=table.insertRow(position);
+				var cell1=row.insertCell(0);
+				var cell2=row.insertCell(1);
+				var cell3=row.insertCell(2);
+				cell1.innerHTML=person.fname;
+				cell2.innerHTML=person.lname;
+				cell3.innerHTML=person.email;
+
+			}
+		</script>
+	</body>
+</html>
